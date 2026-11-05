@@ -1,9 +1,9 @@
 package interpreter.view;
 
-import interpreter.model.expression.ArithExp;
-import interpreter.model.expression.ValueExp;
-import interpreter.model.expression.VarExp;
-import interpreter.model.statement.*;
+import interpreter.model.exp.ArithExp;
+import interpreter.model.exp.ValueExp;
+import interpreter.model.exp.VarExp;
+import interpreter.model.stmt.*;
 import interpreter.model.type.BoolType;
 import interpreter.model.type.IntType;
 import interpreter.model.value.BoolValue;

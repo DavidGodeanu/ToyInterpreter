@@ -1,9 +1,9 @@
-package interpreter.model.expression;
+package interpreter.model.exp;
 
 import interpreter.model.adt.IDictionary;
 import interpreter.model.value.IValue;
 
-public record ValueExp(IValue e) implements Exp {
+public record ValueExp(IValue e) implements IExp {
     @Override
     public IValue eval(IDictionary<String, IValue> tbl) {
         return e;

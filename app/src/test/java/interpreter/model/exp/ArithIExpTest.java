@@ -1,4 +1,4 @@
-package interpreter.model.expression;
+package interpreter.model.exp;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
@@ -9,19 +9,19 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArithExpTest {
+class ArithIExpTest {
     private final IDictionary<String, IValue> symTable = new MyDictionary<>();
-    private static Exp num(int n) { return new ValueExp(new IntValue(n)); }
+    private static IExp num(int n) { return new ValueExp(new IntValue(n)); }
 
     @Test
     void evalAdunare() throws ExpressionException, ADTException {
-        Exp e = new ArithExp('+', num(5), num(3));
+        IExp e = new ArithExp('+', num(5), num(3));
         assertEquals(new IntValue(8), e.eval(symTable));
     }
 
     @Test
     void impartireLaZero() {
-        Exp e = new ArithExp('/', num(10), num(0));
+        IExp e = new ArithExp('/', num(10), num(0));
         assertThrows(ExpressionException.class, () -> e.eval(symTable));
     }
 }

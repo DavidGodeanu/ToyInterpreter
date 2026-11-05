@@ -11,3 +11,8 @@ build
 out/
 .vscode/
 .DS_Store
+*.zip
+.idea/
+*.iml
+out/
+build/

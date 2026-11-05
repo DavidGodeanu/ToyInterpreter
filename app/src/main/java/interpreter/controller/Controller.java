@@ -4,8 +4,8 @@ import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.adt.IStack;
-import interpreter.model.state.PrgState;
-import interpreter.model.statement.IStmt;
+import interpreter.model.PrgState;
+import interpreter.model.stmt.IStmt;
 import interpreter.repository.IRepository;
 
 public class Controller {

@@ -1,10 +1,10 @@
-package interpreter.model.expression;
+package interpreter.model.exp;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
 import interpreter.model.adt.IDictionary;
 import interpreter.model.value.IValue;
 
-public interface Exp {
+public interface IExp {
     IValue eval(IDictionary<String, IValue> tbl) throws ExpressionException, ADTException;
 }

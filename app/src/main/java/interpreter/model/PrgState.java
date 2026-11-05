@@ -1,9 +1,9 @@
-package interpreter.model.state;
+package interpreter.model;
 
 import interpreter.model.adt.IDictionary;
 import interpreter.model.adt.IList;
 import interpreter.model.adt.IStack;
-import interpreter.model.statement.IStmt;
+import interpreter.model.stmt.IStmt;
 import interpreter.model.value.IValue;
 
 public class PrgState {

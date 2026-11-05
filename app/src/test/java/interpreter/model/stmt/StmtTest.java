@@ -1,4 +1,4 @@
-package interpreter.model.statement;
+package interpreter.model.stmt;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
@@ -6,8 +6,8 @@ import interpreter.exceptions.StatementException;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.adt.MyList;
 import interpreter.model.adt.MyStack;
-import interpreter.model.expression.ValueExp;
-import interpreter.model.state.PrgState;
+import interpreter.model.exp.ValueExp;
+import interpreter.model.PrgState;
 import interpreter.model.type.IntType;
 import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.BeforeEach;

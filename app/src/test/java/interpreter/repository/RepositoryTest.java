@@ -3,9 +3,9 @@ package interpreter.repository;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.adt.MyList;
 import interpreter.model.adt.MyStack;
-import interpreter.model.expression.ValueExp;
-import interpreter.model.state.PrgState;
-import interpreter.model.statement.PrintStmt;
+import interpreter.model.exp.ValueExp;
+import interpreter.model.PrgState;
+import interpreter.model.stmt.PrintStmt;
 import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 

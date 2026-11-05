@@ -1,10 +1,10 @@
-package interpreter.model.statement;
+package interpreter.model.stmt;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.adt.IStack;
-import interpreter.model.state.PrgState;
+import interpreter.model.PrgState;
 
 public record CompStmt(IStmt first, IStmt second) implements IStmt {
     @Override

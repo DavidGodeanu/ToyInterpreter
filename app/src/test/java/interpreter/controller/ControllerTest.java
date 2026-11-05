@@ -6,9 +6,9 @@ import interpreter.exceptions.StatementException;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.adt.MyList;
 import interpreter.model.adt.MyStack;
-import interpreter.model.state.PrgState;
-import interpreter.model.statement.IStmt;
-import interpreter.model.statement.PrintStmt;
+import interpreter.model.PrgState;
+import interpreter.model.stmt.IStmt;
+import interpreter.model.stmt.PrintStmt;
 import interpreter.model.value.IntValue;
 import interpreter.repository.IRepository;
 import interpreter.repository.Repository;
@@ -30,7 +30,7 @@ class ControllerTest {
     @Test
     void testOneStepEmptyStackThrows() {
         PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
-                new PrintStmt(new interpreter.model.expression.ValueExp(new IntValue(1))));
+                new PrintStmt(new interpreter.model.exp.ValueExp(new IntValue(1))));
         try {
             state.getExeStack().pop();
         } catch (ADTException ignored) { }

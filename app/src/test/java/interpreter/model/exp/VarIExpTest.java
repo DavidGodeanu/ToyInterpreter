@@ -1,4 +1,4 @@
-package interpreter.model.expression;
+package interpreter.model.exp;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
@@ -9,19 +9,19 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class VarExpTest {
+class VarIExpTest {
     @Test
     void evalExistingVar() throws ADTException, ExpressionException {
         IDictionary<String, IValue> symTable = new MyDictionary<>();
         symTable.put("v", new IntValue(10));
-        Exp e = new VarExp("v");
+        IExp e = new VarExp("v");
         assertEquals(new IntValue(10), e.eval(symTable));
     }
 
     @Test
     void evalMissingVarThrows() {
         IDictionary<String, IValue> symTable = new MyDictionary<>();
-        Exp e = new VarExp("y");
+        IExp e = new VarExp("y");
         assertThrows(ExpressionException.class, () -> e.eval(symTable));
     }
 }

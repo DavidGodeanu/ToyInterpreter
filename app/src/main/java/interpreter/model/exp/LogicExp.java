@@ -1,4 +1,4 @@
-package interpreter.model.expression;
+package interpreter.model.exp;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
@@ -7,7 +7,7 @@ import interpreter.model.type.BoolType;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 
-public record LogicExp(String op, Exp e1, Exp e2) implements Exp {
+public record LogicExp(String op, IExp e1, IExp e2) implements IExp {
     @Override
     public IValue eval(IDictionary<String, IValue> tbl) throws ExpressionException, ADTException {
         IValue v1 = e1.eval(tbl);
