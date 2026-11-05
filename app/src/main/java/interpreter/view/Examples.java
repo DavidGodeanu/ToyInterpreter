@@ -1,6 +1,7 @@
 package interpreter.view;
 
 import interpreter.model.exp.ArithExp;
+import interpreter.model.exp.ArithOp;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.exp.VarExp;
 import interpreter.model.stmt.*;
@@ -10,23 +11,50 @@ import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
 
 public class Examples {
+
     public static IStmt EX1 = new CompStmt(
             new VarDeclStmt("v", new IntType()),
+
             new CompStmt(
-                    new AssignStmt("v", new ValueExp(new IntValue(2))),
+                    new AssignStmt(
+                            "v",
+                            new ValueExp(new IntValue(2))
+                    ),
+
                     new PrintStmt(new VarExp("v"))
             )
     );
 
     public static IStmt EX2 = new CompStmt(
             new VarDeclStmt("a", new IntType()),
+
             new CompStmt(
                     new VarDeclStmt("b", new IntType()),
+
                     new CompStmt(
-                            new AssignStmt("a", new ArithExp('+', new ValueExp(new IntValue(2)),
-                                    new ArithExp('*', new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5))))),
+                            new AssignStmt(
+                                    "a",
+                                    new ArithExp(
+                                            ArithOp.ADD,
+                                            new ValueExp(new IntValue(2)),
+                                            new ArithExp(
+                                                    ArithOp.MUL,
+                                                    new ValueExp(new IntValue(3)),
+                                                    new ValueExp(new IntValue(5))
+                                            )
+                                    )
+                            ),
+
                             new CompStmt(
-                                    new AssignStmt("b", new ArithExp('+', new VarExp("a"), new ValueExp(new IntValue(1)))),
+                                    new AssignStmt(
+                                            "b",
+                                            new ArithExp(
+                                                    ArithOp.ADD,
+                                                    new VarExp("a"),
+                                                    new ValueExp(new IntValue(1))
+                                            )
+                                    ),
+
                                     new PrintStmt(new VarExp("b"))
                             )
                     )
@@ -35,14 +63,29 @@ public class Examples {
 
     public static IStmt EX3 = new CompStmt(
             new VarDeclStmt("a", new BoolType()),
+
             new CompStmt(
                     new VarDeclStmt("v", new IntType()),
+
                     new CompStmt(
-                            new AssignStmt("a", new ValueExp(new BoolValue(true))),
+                            new AssignStmt(
+                                    "a",
+                                    new ValueExp(new BoolValue(true))
+                            ),
+
                             new CompStmt(
-                                    new IfStmt(new VarExp("a"),
-                                            new AssignStmt("v", new ValueExp(new IntValue(2))),
-                                            new AssignStmt("v", new ValueExp(new IntValue(3)))),
+                                    new IfStmt(
+                                            new VarExp("a"),
+                                            new AssignStmt(
+                                                    "v",
+                                                    new ValueExp(new IntValue(2))
+                                            ),
+                                            new AssignStmt(
+                                                    "v",
+                                                    new ValueExp(new IntValue(3))
+                                            )
+                                    ),
+
                                     new PrintStmt(new VarExp("v"))
                             )
                     )
