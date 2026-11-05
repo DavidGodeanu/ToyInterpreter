@@ -9,20 +9,32 @@ class MyStackTest {
     @Test
     void testPushAndPop() throws ADTException {
         IStack<Integer> stack = new MyStack<>();
-        assertTrue(stack.isEmpty(), "Stiva ar trebui să fie goală la început.");
+        assertTrue(stack.isEmpty());
 
         stack.push(10);
-        assertFalse(stack.isEmpty(), "Stiva nu ar trebui să fie goală după push.");
+        assertFalse(stack.isEmpty());
 
         int val = stack.pop();
-        assertEquals(10, val, "Valoarea scoasă trebuie să fie 10.");
-        assertTrue(stack.isEmpty(), "Stiva ar trebui să fie goală după ce am scos singurul element.");
+        assertEquals(10, val);
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void testLifoOrderMultipleElements() throws ADTException {
+        IStack<Integer> stack = new MyStack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        assertEquals(3, stack.pop());
+        assertEquals(2, stack.pop());
+        assertEquals(1, stack.pop());
+        assertTrue(stack.isEmpty());
     }
 
     @Test
     void testPopEmptyStackThrowsException() {
         IStack<Integer> stack = new MyStack<>();
-        // Verificăm dacă aruncă eroarea noastră custom când dăm pop din stiva goală
         assertThrows(ADTException.class, stack::pop);
     }
 }

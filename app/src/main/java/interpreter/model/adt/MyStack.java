@@ -1,10 +1,11 @@
 package interpreter.model.adt;
 
 import interpreter.exceptions.ADTException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class MyStack<T> implements IStack<T> {
-    private final Stack<T> stack = new Stack<>();
+    private final Deque<T> stack = new ArrayDeque<>();
 
     @Override
     public T pop() throws ADTException {

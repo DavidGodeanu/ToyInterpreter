@@ -9,7 +9,7 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class VarIExpTest {
+class VarExpTest {
     @Test
     void evalExistingVar() throws ADTException, ExpressionException {
         IDictionary<String, IValue> symTable = new MyDictionary<>();

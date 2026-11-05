@@ -10,7 +10,7 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LogicIExpTest {
+class LogicExpTest {
     private final IDictionary<String, IValue> symTable = new MyDictionary<>();
     private static IExp bool(boolean b) { return new ValueExp(new BoolValue(b)); }
 

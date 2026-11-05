@@ -10,7 +10,17 @@ class MyListTest {
         list.add(5);
         list.add(10);
 
-        // Verificăm dacă elementele s-au adăugat corect în listă
         assertEquals("[5, 10]", list.toString());
+    }
+
+    @Test
+    void testGetAndSize() {
+        IList<String> list = new MyList<>();
+        list.add("a");
+        list.add("b");
+
+        assertEquals(2, list.size());
+        assertEquals("a", list.get(0));
+        assertEquals("b", list.get(1));
     }
 }
