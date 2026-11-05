@@ -4,45 +4,14 @@ import interpreter.controller.Controller;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.adt.MyList;
 import interpreter.model.adt.MyStack;
-import interpreter.model.expression.ArithExp;
-import interpreter.model.expression.ValueExp;
-import interpreter.model.expression.VarExp;
 import interpreter.model.state.PrgState;
-import interpreter.model.statement.*;
-import interpreter.model.type.BoolType;
-import interpreter.model.type.IntType;
-import interpreter.model.value.BoolValue;
-import interpreter.model.value.IntValue;
+import interpreter.model.statement.IStmt;
 import interpreter.repository.IRepository;
 import interpreter.repository.Repository;
+import interpreter.view.Examples;
 import java.util.Scanner;
 
 public class Main {
-    private static IStmt createEx1() {
-        return new CompStmt(new VarDeclStmt("v", new IntType()),
-                new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(2))),
-                        new PrintStmt(new VarExp("v"))));
-    }
-
-    private static IStmt createEx2() {
-        return new CompStmt(new VarDeclStmt("a", new IntType()),
-                new CompStmt(new VarDeclStmt("b", new IntType()),
-                        new CompStmt(new AssignStmt("a", new ArithExp('+', new ValueExp(new IntValue(2)),
-                                new ArithExp('*', new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5))))),
-                                new CompStmt(new AssignStmt("b", new ArithExp('+', new VarExp("a"), new ValueExp(new IntValue(1)))),
-                                        new PrintStmt(new VarExp("b"))))));
-    }
-
-    private static IStmt createEx3() {
-        return new CompStmt(new VarDeclStmt("a", new BoolType()),
-                new CompStmt(new VarDeclStmt("v", new IntType()),
-                        new CompStmt(new AssignStmt("a", new ValueExp(new BoolValue(true))),
-                                new CompStmt(new IfStmt(new VarExp("a"),
-                                        new AssignStmt("v", new ValueExp(new IntValue(2))),
-                                        new AssignStmt("v", new ValueExp(new IntValue(3)))),
-                                        new PrintStmt(new VarExp("v"))))));
-    }
-
     private static void runProgram(IStmt program) {
         PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
         IRepository repo = new Repository(state);
@@ -66,9 +35,9 @@ public class Main {
 
             String input = scanner.nextLine();
             switch (input) {
-                case "1" -> runProgram(createEx1());
-                case "2" -> runProgram(createEx2());
-                case "3" -> runProgram(createEx3());
+                case "1" -> runProgram(Examples.EX1);
+                case "2" -> runProgram(Examples.EX2);
+                case "3" -> runProgram(Examples.EX3);
                 case "0" -> {
                     System.out.println("La revedere!");
                     return;
