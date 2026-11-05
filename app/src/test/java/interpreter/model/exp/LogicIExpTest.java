@@ -16,19 +16,19 @@ class LogicIExpTest {
 
     @Test
     void evalAnd() throws ExpressionException, ADTException {
-        IExp e = new LogicExp("and", bool(true), bool(false));
+        IExp e = new LogicExp(LogicOp.AND, bool(true), bool(false));
         assertEquals(new BoolValue(false), e.eval(symTable));
     }
 
     @Test
     void evalOr() throws ExpressionException, ADTException {
-        IExp e = new LogicExp("or", bool(true), bool(false));
+        IExp e = new LogicExp(LogicOp.OR, bool(true), bool(false));
         assertEquals(new BoolValue(true), e.eval(symTable));
     }
 
     @Test
     void evalNonBooleanThrows() {
-        IExp e = new LogicExp("and", new ValueExp(new IntValue(5)), bool(true));
+        IExp e = new LogicExp(LogicOp.AND, new ValueExp(new IntValue(5)), bool(true));
         assertThrows(ExpressionException.class, () -> e.eval(symTable));
     }
 }

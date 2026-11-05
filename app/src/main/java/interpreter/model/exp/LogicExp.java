@@ -7,7 +7,7 @@ import interpreter.model.type.BoolType;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 
-public record LogicExp(String op, IExp e1, IExp e2) implements IExp {
+public record LogicExp(LogicOp op, IExp e1, IExp e2) implements IExp {
     @Override
     public IValue eval(IDictionary<String, IValue> tbl) throws ExpressionException, ADTException {
         IValue v1 = e1.eval(tbl);
@@ -25,13 +25,10 @@ public record LogicExp(String op, IExp e1, IExp e2) implements IExp {
         boolean n1 = b1.val();
         boolean n2 = b2.val();
 
-        if (op.equals("and")) {
-            return new BoolValue(n1 && n2);
-        } else if (op.equals("or")) {
-            return new BoolValue(n1 || n2);
-        } else {
-            throw new ExpressionException("Invalid logical operator: " + op);
-        }
+        return switch (op) {
+            case AND -> new BoolValue(n1 && n2);
+            case OR -> new BoolValue(n1 || n2);
+        };
     }
 
     @Override
