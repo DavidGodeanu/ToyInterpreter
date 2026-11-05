@@ -1,0 +1,36 @@
+package interpreter.model.state;
+
+import interpreter.model.adt.IDictionary;
+import interpreter.model.adt.IList;
+import interpreter.model.adt.IStack;
+import interpreter.model.statement.IStmt;
+import interpreter.model.value.IValue;
+
+public class PrgState {
+    private IStack<IStmt> exeStack;
+    private IDictionary<String, IValue> symTable;
+    private IList<IValue> out;
+    private IStmt originalProgram;
+
+    public PrgState(IStack<IStmt> exeStack, IDictionary<String, IValue> symTable, IList<IValue> out, IStmt prg) {
+        this.exeStack = exeStack;
+        this.symTable = symTable;
+        this.out = out;
+        this.originalProgram = prg;
+        this.exeStack.push(prg);
+    }
+
+    public IStack<IStmt> getExeStack() { return exeStack; }
+    public void setExeStack(IStack<IStmt> exeStack) { this.exeStack = exeStack; }
+    public IDictionary<String, IValue> getSymTable() { return symTable; }
+    public void setSymTable(IDictionary<String, IValue> symTable) { this.symTable = symTable; }
+    public IList<IValue> getOut() { return out; }
+    public void setOut(IList<IValue> out) { this.out = out; }
+
+    @Override
+    public String toString() {
+        return "ExeStack:\n" + exeStack.toString() + "\n" +
+                "SymTable:\n" + symTable.toString() + "\n" +
+                "Out:\n" + out.toString() + "\n";
+    }
+}
