@@ -2,15 +2,16 @@ package interpreter.controller;
 
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
+import interpreter.exceptions.MyException;
 import interpreter.exceptions.StatementException;
-import interpreter.model.adt.IStack;
 import interpreter.model.PrgState;
+import interpreter.model.adt.IStack;
 import interpreter.model.stmt.IStmt;
 import interpreter.repository.IRepository;
 
 public class Controller {
-    private IRepository repo;
-    private boolean displayFlag;
+    private final IRepository repo;
+    private final boolean displayFlag;
 
     public Controller(IRepository repo, boolean displayFlag) {
         this.repo = repo;
@@ -26,13 +27,15 @@ public class Controller {
         return crtStmt.execute(state);
     }
 
-    public void allStep() throws StatementException, ExpressionException, ADTException {
+    public void allStep() throws MyException {
         PrgState prg = repo.getCrtPrg();
+        repo.logPrgStateExec();
         if (displayFlag) {
             System.out.println(prg.toString());
         }
         while (!prg.getExeStack().isEmpty()) {
             oneStep(prg);
+            repo.logPrgStateExec();
             if (displayFlag) {
                 System.out.println(prg.toString());
             }
