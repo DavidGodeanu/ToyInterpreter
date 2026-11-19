@@ -2,9 +2,6 @@ package interpreter.view;
 
 import interpreter.controller.Controller;
 import interpreter.model.PrgState;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
 import interpreter.model.stmt.IStmt;
 import interpreter.repository.IRepository;
 import interpreter.repository.Repository;
@@ -15,7 +12,7 @@ public class TextMenu {
     private IStmt selectedProgram = null;
 
     private void runProgram(IStmt program) {
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
+        PrgState state = PrgState.of(program);
         IRepository repo = new Repository(state);
         Controller ctrl = new Controller(repo, true);
         try {

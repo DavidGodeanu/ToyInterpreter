@@ -3,10 +3,8 @@ package interpreter.controller;
 import interpreter.exceptions.ADTException;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.StatementException;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
 import interpreter.model.PrgState;
+import interpreter.model.exp.ValueExp;
 import interpreter.model.stmt.IStmt;
 import interpreter.model.stmt.PrintStmt;
 import interpreter.model.value.IntValue;
@@ -20,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ControllerTest {
 
     private PrgState runSilently(IStmt program) throws StatementException, ExpressionException, ADTException {
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
+        PrgState state = PrgState.of(program);
         IRepository repo = new Repository(state);
         Controller ctrl = new Controller(repo, false);
         ctrl.allStep();
@@ -29,8 +27,7 @@ class ControllerTest {
 
     @Test
     void testOneStepEmptyStackThrows() {
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
-                new PrintStmt(new interpreter.model.exp.ValueExp(new IntValue(1))));
+        PrgState state = PrgState.of(new PrintStmt(new ValueExp(new IntValue(1))));
         try {
             state.getExeStack().pop();
         } catch (ADTException ignored) { }

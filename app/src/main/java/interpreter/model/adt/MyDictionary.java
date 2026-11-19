@@ -1,6 +1,7 @@
 package interpreter.model.adt;
 
 import interpreter.exceptions.ADTException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,19 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
             throw new ADTException("Cannot update. Key '" + key + "' is not defined.");
         }
         dict.put(key, value);
+    }
+
+    @Override
+    public void remove(K key) throws ADTException {
+        if (!isDefined(key)) {
+            throw new ADTException("Cannot remove. Key '" + key + "' is not defined.");
+        }
+        dict.remove(key);
+    }
+
+    @Override
+    public Map<K, V> toMap() {
+        return Map.copyOf(dict);
     }
 
     @Override

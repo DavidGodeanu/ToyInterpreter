@@ -2,33 +2,43 @@ package interpreter.model.adt;
 
 import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyDictionaryTest {
     @Test
-    void testPutAndLookup() throws ADTException {
-        IDictionary<String, Integer> dict = new MyDictionary<>();
-        dict.put("v", 5);
+    void putLookupAndUpdateWork() throws ADTException {
+        MyDictionary<String, Integer> dict = new MyDictionary<>();
+        assertFalse(dict.isDefined("a"));
 
-        assertTrue(dict.isDefined("v"));
-        assertEquals(5, dict.lookup("v"));
-    }
-
-    @Test
-    void testUpdate() throws ADTException {
-        IDictionary<String, Integer> dict = new MyDictionary<>();
         dict.put("a", 10);
-        dict.update("a", 20);
+        assertTrue(dict.isDefined("a"));
+        assertEquals(10, dict.lookup("a"));
 
+        dict.update("a", 20);
         assertEquals(20, dict.lookup("a"));
     }
 
     @Test
-    void testExceptions() {
-        IDictionary<String, Integer> dict = new MyDictionary<>();
+    void lookupOrUpdateMissingKeyThrows() {
+        MyDictionary<String, Integer> dict = new MyDictionary<>();
+        assertThrows(ADTException.class, () -> dict.lookup("missing"));
+        assertThrows(ADTException.class, () -> dict.update("missing", 1));
+    }
 
-        // Trebuie să arunce eroare dacă căutăm sau actualizăm o variabilă care nu există
-        assertThrows(ADTException.class, () -> dict.lookup("x"));
-        assertThrows(ADTException.class, () -> dict.update("y", 15));
+    @Test
+    void removeDeletesKeyAndThrowsIfMissing() throws ADTException {
+        MyDictionary<String, Integer> dict = new MyDictionary<>();
+        dict.put("a", 1);
+        dict.remove("a");
+        assertFalse(dict.isDefined("a"));
+        assertThrows(ADTException.class, () -> dict.remove("a"));
+    }
+
+    @Test
+    void toMapReturnsCopyOfEntries() {
+        MyDictionary<String, Integer> dict = new MyDictionary<>();
+        dict.put("a", 1);
+        assertEquals(1, dict.toMap().get("a"));
     }
 }

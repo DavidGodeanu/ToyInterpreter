@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyList<T> implements IList<T> {
-
     private final List<T> list = new ArrayList<>();
 
     @Override
@@ -21,7 +20,6 @@ public class MyList<T> implements IList<T> {
 
     @Override
     public T get(int index) throws ADTException {
-
         try {
             return list.get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -30,6 +28,11 @@ public class MyList<T> implements IList<T> {
                             " is out of bounds for list of size " + list.size()
             );
         }
+    }
+
+    @Override
+    public List<T> toList() {
+        return List.copyOf(list);
     }
 
     @Override
